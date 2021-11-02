@@ -14,6 +14,8 @@ const getWeatherFromApi = async () => {
   return {};
 };
 
+// Fetch weather forecast as well 
+
 const getWeatherForecastFromApi = async () => {
   try {
     const response = await fetch(`${baseURL}/forecast`);
@@ -43,11 +45,9 @@ window.addEventListener("load",() =>{
          })
          .then(data =>{
              const {name} = data;
-             const {feels_like} = data.main;
-             const {id,main} = data.weather[0];
+             const {main} = data.weather[0];
              location.textContent = name;
              climate.textContent = main;
-             tempValue.textContent = temp;
              console.log(data);
          })
       })  
@@ -65,9 +65,23 @@ class Weather extends React.Component {
     };
   }
 
+// Add forecast here as well
+
   async componentDidMount() {
     const weather = await getWeatherFromApi();
+    const forecast = await getWeatherForecastFromApi();
     this.setState({icon: weather.icon.slice(0, -1)});
+    this.setState({icon: forecast.icon.slice(0, -1)});
+
+    if ("geolocation" in navigator) { // Check if geolocation is available
+
+      console.log("Available");
+
+    } else {
+
+      console.log("Not Available");
+
+    }
   }
 
   render() {
