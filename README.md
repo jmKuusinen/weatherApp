@@ -38,7 +38,7 @@ Solution for Eficode weatherapp
 
 *Test automation is key in developing good quality applications. Finding bugs in early stages of development is valuable in any software development project. With Robot Framework you can create integration tests that also serve as feature descriptions, making them exceptionally useful.*
 
-🔲* Create automated tests for the application. (tip: [mocha](https://mochajs.org/))
+✅* Create automated tests for the application. (tip: [mocha](https://mochajs.org/))
 
 🔲* Create [Robot Framework](http://robotframework.org/) integration tests. Hint: Start by creating a third container that gives expected weather data and direct the backend queries there by redefining the **MAP_ENDPOINT**.
 
