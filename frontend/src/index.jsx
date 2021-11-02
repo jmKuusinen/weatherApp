@@ -29,11 +29,9 @@ const getWeatherForecastFromApi = async () => {
 
 // Find weather info based on browser location. 
 
-window.addEventListener("load",() =>{
-  let longitude;
-  let latitude;
-  
-  if(navigator.geolocation){
+const getBrowserLocation = async () => {
+  try {
+    if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((position) =>{
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
@@ -49,10 +47,16 @@ window.addEventListener("load",() =>{
              location.textContent = name;
              climate.textContent = main;
              console.log(data);
-         })
-      })  
-  }
-}) 
+            })
+          })  
+      }
+    } catch {
+      console.error(error);
+    }  
+
+    return {};
+    }
+  
 
 class Weather extends React.Component {
   constructor(props) {
