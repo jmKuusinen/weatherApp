@@ -1,5 +1,5 @@
 const debug = require('debug')('weathermap');
-// require('dotenv').config();
+// require('.env').config();
 
 const Koa = require('koa');
 const router = require('koa-router')();
@@ -8,7 +8,7 @@ const cors = require('kcors');
 
 const appId = process.env.APPID || '';
 const mapURI = process.env.MAP_ENDPOINT || "http://api.openweathermap.org/data/2.5";
-const targetCity = process.env.TARGET_CITY || "Helsinki,fi";
+const targetCity = process.env.TARGET_CITY || "Tampere,fi";
 
 const port = process.env.PORT || 9000;
 
@@ -20,11 +20,19 @@ const fetchWeather = async () => {
   const endpoint = `${mapURI}/weather?q=${targetCity}&appid=${appId}&`;
   const response = await fetch(endpoint);
 
-  return response ? response.json() : {}
+  return response ? response.json() : {};
+};
+
+const fetchWeatherForecast = async () => {
+  const endpoint = `${mapURI}/forecast?q=${targetCity}&appid=${appId}&`;
+  const response = await fetch(endpoint);
+
+  return response ? response.json() : {};
 };
 
 router.get('/api/weather', async ctx => {
   const weatherData = await fetchWeather();
+  const forecastData = await fetchWeatherForecast();
 
   ctx.type = 'application/json; charset=utf-8';
   ctx.body = weatherData.weather ? weatherData.weather[0] : {};
