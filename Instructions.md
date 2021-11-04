@@ -11,5 +11,6 @@
   echo "APPID={your own apikey here}" > .env
 
 ## Deployment
-* Everything you need is included within docker images, these will be built first and then deployed in a container
-* Just use **docker compose up** to run the containers and deploy however you see fit 
+* This app can be deployed in a container
+* Just use **docker compose up** to run the containers and deploy however you see fit
+* Check .env file that API key is correctly set if there are any issues 

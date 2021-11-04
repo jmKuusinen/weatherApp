@@ -17,6 +17,8 @@ describe("Openweathermap API", function() {
       });
     });
 
+// If response is status code: 200, connection is ok
+
    describe("fetch forecast", function() {
     const fr_endpoint = `${mapURI}/forecast?q=${targetCity}&appid=${appId}&`;
     var url = fr_endpoint;
